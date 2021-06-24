@@ -22,7 +22,7 @@
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
                             <label for="id_bidang" class="control-label"><b>Tahun <font color="red">*</font></b></label>
-                            <?php echo form_dropdown('tahun', array('' => 'Pilih Data', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
+                            <?php echo form_dropdown('tahun', array('' => 'Pilih Data', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
                             <div class="help-block"></div>
                         </div>
                     </div>

@@ -18,17 +18,17 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>',
                 searchPlaceholder: "Search records"
             },
-            dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-            buttons: [{
-                text: '<i class="fa fa-plus"></i> Tambah Data',
-                attr: {
-                    title: 'Add Button',
-                    class: 'btn btn-primary',
-                    id: 'btnAdd'
-                },
-            }],
+            // dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+            //     "<'row'<'col-sm-12'tr>>" +
+            //     "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            // buttons: [{
+            //     text: '<i class="fa fa-plus"></i> Tambah Data',
+            //     attr: {
+            //         title: 'Add Button',
+            //         class: 'btn btn-primary',
+            //         id: 'btnAdd'
+            //     },
+            // }],
             serverSide: true,
             ordering: false,
             ajax: {

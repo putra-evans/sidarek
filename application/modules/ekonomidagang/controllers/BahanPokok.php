@@ -6,7 +6,7 @@
  * @author Yuda Pramana
  */
 
-class BahanPokok extends SLP_Controller
+class Bahanpokok extends SLP_Controller
 {
 
     private $csrf;

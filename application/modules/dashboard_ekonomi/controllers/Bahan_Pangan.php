@@ -6,7 +6,7 @@
  * @author Yuda Pramana
  */
 
-class Bahan_Pangan extends SLP_Controller
+class Bahan_pangan extends SLP_Controller
 {
 
     private $csrf;

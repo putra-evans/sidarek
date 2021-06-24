@@ -152,15 +152,18 @@
         $('.lblPass').text('*');
 
         $('#id_bidang').prop('disabled', false);
-        $('#tahun').prop('disabled', false);
+        // $('#tahun').prop('disabled', false);
         $('#nomor').prop('disabled', false);
         $('#pemerintah').prop('disabled', false);
         $('#judul').prop('disabled', false);
         $('#sasaran').prop('disabled', false);
         $('#target').prop('disabled', false);
         $('#tanggal_terbit').prop('disabled', false);
-        $('#id_bidang').val('').trigger('change');
-        $('#tahun').val('').trigger('change');
+        // $('#id_tipe_kebijakan').val('').trigger('change');
+        // $('#tahun').val('');
+        $('#id_bidang').select2('val', '');
+        $('#id_tipe_kebijakan').select2('val', '');
+        $('#tahun_kebijakan').val('');
 
         var d = new Date();
 
@@ -274,6 +277,8 @@
         $('.add').show();
         $('.showupdate').show();
 
+
+
         var data = mainTbl.api().row($(this).parents('tr')).data();
         //(data);
         e.stopPropagation();
@@ -281,7 +286,8 @@
 
         $('#id_produk').val(data.id_produk);
         $('#id_bidang').select2('val', data.id_bidang);
-        $('#tahun').select2('val', data.tahun);
+        $('#id_tipe_kebijakan').select2('val', data.id_bidang);
+        $('#tahun_kebijakan').val(data.tahun);
         $('#nomor').val(data.nomor);
         $('#pemerintah').val(data.pemerintah);
         $('#judul').val(data.judul);
@@ -289,6 +295,22 @@
         $('#target').val(data.target);
         //(data.tanggal_terbit);
         $('#tanggal_terbit').val(data.tanggal_terbit);
+
+        if (data.file != "") {
+          $('#file-to-text').text(data.file);
+          $("#seefile").attr("href", site + "assets/files/" + data.file);
+          $('#seefile').show();
+        } else {
+          $('.add').show();
+          $('.showupdate').show();
+          $('#seefile').hide();
+          $('#file-to-text').text('Data File Tidak Ada');
+        }
+
+        // $('.add').hide();
+        // $('.showupdate').show();
+
+
 
         $('#formEntry').attr('action', site + 'kebijakan/produk/update');
         $('.lblPass').text('');
@@ -303,7 +325,6 @@
         $('#judul-form').html('LIHAT ');
 
         var data = mainTbl.api().row($(this).parents('tr')).data();
-        //(data);
         e.stopPropagation();
         formReset();
 
@@ -323,7 +344,8 @@
 
         $('#id_produk').val(data.id_produk);
         $('#id_bidang').select2('val', data.id_bidang);
-        $('#tahun').select2('val', data.tahun);
+        $('#id_tipe_kebijakan').select2('val', data.id_tipe);
+        $('#tahun_kebijakan').val(data.tahun);
         $('#nomor').val(data.nomor);
         $('#pemerintah').val(data.pemerintah);
         $('#judul').val(data.judul);
@@ -333,7 +355,9 @@
         $('#tanggal_terbit').val(data.tanggal_terbit);
 
         $('#id_bidang').prop('disabled', true);
-        $('#tahun').prop('disabled', true);
+        // $('#id_tipe_kebijakan').prop('disabled', true);
+
+        $('#tahun_kebijakan').prop('disabled', true);
         $('#nomor').prop('disabled', true);
         $('#pemerintah').prop('disabled', true);
         $('#judul').prop('disabled', true);
@@ -436,6 +460,31 @@
 
   });
 
+
+  $(document).ready(function() {
+    $("#monday_date_datepicker").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
+    $("#tahun_kebijakan").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
+
+
+    $("#monday_date_datepicker1").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
+    $("#tahun").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years"
+    });
+  });
 
 
   var defaults = {

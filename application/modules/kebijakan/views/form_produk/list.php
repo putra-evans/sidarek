@@ -28,7 +28,13 @@
               <div class="col-xs-12 col-sm-3">
                 <div class="form-group">
                   <label style="font-size:16px;"><b>Filter berdasarkan Tahun </b></label>
-                  <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
+                  <div class="input-group date monday_date_datepicker1" data-provide="datepicker" id="monday_date_datepicker1">
+                    <input type="text" id="tahun" name="tahun" class="form-control" data-date-format="yyyy" readonly>
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                  <!-- <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?> -->
                 </div>
               </div>
               <div class="col-xs-12 col-sm-3">

@@ -6,7 +6,7 @@
  * @author Yuda Pramana
  */
 
-class KreditBank extends SLP_Controller
+class Kreditbank extends SLP_Controller
 {
 
     private $csrf;

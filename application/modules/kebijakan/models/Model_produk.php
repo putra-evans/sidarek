@@ -67,6 +67,7 @@ class Model_produk extends CI_Model
 				'index' 			=> $index,
 				'id_produk' 		=> $r['id_produk'],
 				'id_bidang' 		=> $r['id_bidang'],
+				'id_tipe' 			=> $r['id_tipe'],
 				'tanggal_terbit' 	=> $r['tanggal_terbit'],
 				'nomor' 			=> $r['nomor'],
 				'tahun' 			=> $r['tahun'],
@@ -206,25 +207,46 @@ class Model_produk extends CI_Model
 
 		try {
 
-			$fileName = $this->uploadfile();
-			$data = array(
-				'id_bidang'			=> $this->input->post('id_bidang'),
-				'tahun'				=> $this->input->post('tahun'),
-				'tanggal_terbit'	=> $this->input->post('tanggal_terbit'),
-				'nomor'				=> $this->input->post('nomor'),
-				'pemerintah'		=> $this->input->post('pemerintah'),
-				'judul'				=> $this->input->post('judul'),
-				'sasaran'			=> $this->input->post('sasaran'),
-				'target'			=> $this->input->post('target'),
-				'id_tipe'			=> $this->input->post('id_tipe'),
-				'file'				=> $fileName,
+			// $fileName = $this->uploadkebijakan();
+
+			$config = array(
+				'upload_path' 		=> './assets/files/',
+				'allowed_types' 	=> 'png|jpg|jpeg|pdf',
+				'file_ext_tolower'	=> TRUE,
+				'max_size' 			=> 10240,
+				'max_filename' 		=> 0,
+				'remove_spaces' 	=> TRUE,
 			);
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			$aksiupload = $this->upload->do_upload('file_to_upload');
 
-			$this->db->insert('ma_produk_kebijakan', $data);
 
-			$result['success'] = 'YEAH';
-			$result['status'] = true;
-			$result['message'] = 'Data Produk Kebijakan Berhasil Disimpan';
+			if (!$aksiupload) {
+				echo "Gagal Upload";
+				// return array('status' => false, 'message' => 'Ukuran file tidak sesuai');
+			} else {
+				$upload_data = $this->upload->data();
+				$images  = $upload_data['file_name'];
+				$data = array(
+					'id_bidang'			=> $this->input->post('id_bidang'),
+					'tahun'				=> $this->input->post('tahun'),
+					'tanggal_terbit'	=> $this->input->post('tanggal_terbit'),
+					'nomor'				=> $this->input->post('nomor'),
+					'pemerintah'		=> $this->input->post('pemerintah'),
+					'judul'				=> $this->input->post('judul'),
+					'sasaran'			=> $this->input->post('sasaran'),
+					'target'			=> $this->input->post('target'),
+					'id_tipe'			=> $this->input->post('id_tipe'),
+					'file'				=> $images,
+				);
+
+				$this->db->insert('ma_produk_kebijakan', $data);
+
+				$result['success'] = 'YEAH';
+				$result['status'] = true;
+				$result['message'] = 'Data Produk Kebijakan Berhasil Disimpan';
+			}
 		} catch (\Exception $e) {
 			$result['info'] = $e->getMessage();
 		}
@@ -244,33 +266,76 @@ class Model_produk extends CI_Model
 
 		try {
 
-			$fileName = $this->uploadfile();
-			$idProduk = $this->input->post('id_produk');
-			$produk   = $this->db->where('id_produk', $idProduk);
+			$config = array(
+				'upload_path' 		=> './assets/files/',
+				'allowed_types' 	=> 'png|jpg|jpeg|pdf',
+				'file_ext_tolower'	=> TRUE,
+				'max_size' 			=> 10240,
+				'max_filename' 		=> 0,
+				'remove_spaces' 	=> TRUE,
+			);
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			$aksiupload = $this->upload->do_upload('file_to_upload');
 
-			if ($produk) {
+			if (!$aksiupload) {
+				$idProduk = $this->input->post('id_produk');
+				$produk   = $this->db->where('id_produk', $idProduk);
+				$upload_data = $this->upload->data();
+				$images  = $upload_data['file_name'];
 
-				$data = array(
-					'id_bidang'			=> $this->input->post('id_bidang'),
-					'tahun'				=> $this->input->post('tahun'),
-					'tanggal_terbit'	=> $this->input->post('tanggal_terbit'),
-					'nomor'				=> $this->input->post('nomor'),
-					'pemerintah'		=> $this->input->post('pemerintah'),
-					'judul'				=> $this->input->post('judul'),
-					'sasaran'			=> $this->input->post('sasaran'),
-					'target'			=> $this->input->post('target'),
-					'file'				=> $fileName,
-				);
+				if ($produk) {
+					$data = array(
+						'id_bidang'			=> $this->input->post('id_bidang'),
+						'tahun'				=> $this->input->post('tahun'),
+						'tanggal_terbit'	=> $this->input->post('tanggal_terbit'),
+						'nomor'				=> $this->input->post('nomor'),
+						'pemerintah'		=> $this->input->post('pemerintah'),
+						'judul'				=> $this->input->post('judul'),
+						'sasaran'			=> $this->input->post('sasaran'),
+						'target'			=> $this->input->post('target'),
+						'file'				=> $images,
+					);
 
-				if ($fileName == "") {
-					unset($data['file']);
+					if ($images == "") {
+						unset($data['file']);
+					}
+
+					$this->db->update('ma_produk_kebijakan', $data);
+
+					$result['success'] = 'YEAH';
+					$result['status'] = true;
+					$result['message'] = 'Data Produk Kebijakan Berhasil Diupdate';
 				}
+			} else {
+				$idProduk = $this->input->post('id_produk');
+				$produk   = $this->db->where('id_produk', $idProduk);
+				$upload_data = $this->upload->data();
+				$images  = $upload_data['file_name'];
 
-				$this->db->update('ma_produk_kebijakan', $data);
+				if ($produk) {
+					$data = array(
+						'id_bidang'			=> $this->input->post('id_bidang'),
+						'tahun'				=> $this->input->post('tahun'),
+						'tanggal_terbit'	=> $this->input->post('tanggal_terbit'),
+						'nomor'				=> $this->input->post('nomor'),
+						'pemerintah'		=> $this->input->post('pemerintah'),
+						'judul'				=> $this->input->post('judul'),
+						'sasaran'			=> $this->input->post('sasaran'),
+						'target'			=> $this->input->post('target'),
+						'file'				=> $images,
+					);
 
-				$result['success'] = 'YEAH';
-				$result['status'] = true;
-				$result['message'] = 'Data Produk Kebijakan Berhasil Disimpan';
+					if ($images == "") {
+						unset($data['file']);
+					}
+
+					$this->db->update('ma_produk_kebijakan', $data);
+
+					$result['success'] = 'YEAH';
+					$result['status'] = true;
+					$result['message'] = 'Data Produk Kebijakan Berhasil Diupdate';
+				}
 			}
 		} catch (\Exception $e) {
 			$result['info'] = $e->getMessage();
@@ -290,10 +355,11 @@ class Model_produk extends CI_Model
 		return array('message' => 'SUCCESS');
 	}
 
-	public function uploadfile()
+	public function uploadkebijakan()
 	{
 		$config['upload_path'] 			= './assets/files/';
-		$config['allowed_types']        = 'gif|jpg|png|jpeg|pdf';
+		$config['allowed_types']        = 'jpg|png|jpeg|pdf';
+		$config['max_size']             = 2048;
 
 		$this->load->library('upload', $config);
 

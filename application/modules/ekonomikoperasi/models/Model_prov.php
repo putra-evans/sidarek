@@ -119,7 +119,7 @@ class Model_prov extends CI_Model
 		if ($tahun) {
 			$this->db->where('peragaan.tahun', $tahun);
 		}
-		
+
 		$column_search = array('peragaan.tahun');
 
 		$i = 0;
@@ -222,6 +222,7 @@ class Model_prov extends CI_Model
 
 				$data = array(
 					'tahun'								=> $this->input->post('tahun'),
+					'kategori_koperasi'	 				=> $this->input->post('kategori_koperasi'),
 					'total_jumlah_unit'					=> $this->input->post('total_jumlah_unit'),
 					'total_unit_aktif'					=> $this->input->post('total_unit_aktif'),
 					'total_unit_nonaktif'				=> $this->input->post('total_unit_nonaktif'),

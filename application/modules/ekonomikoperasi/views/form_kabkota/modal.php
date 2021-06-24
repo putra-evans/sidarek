@@ -5,7 +5,7 @@
         <button type="button" class="close btnClose" aria-hidden="true">&times;</button>
         <h4 class="modal-title"><b><span id="judul-form"> </span>PERAGAAN KOPERASI PER KAB / KOTA</b></h4>
       </div>
-      <?php echo form_open_multipart(site_url('kebijakan/produk/create'), array('id' => 'formEntry')); ?>
+      <?php echo form_open_multipart(site_url('ekonomikoperasi/peragaankabkota/create'), array('id' => 'formEntry')); ?>
       <div class="modal-body" style="padding:15px 15px 5px 15px;">
         <div id="errEntry"></div>
         <div class="row">
@@ -16,7 +16,7 @@
           <div class="col-xs-12 col-sm-12">
             <div class="form-group required">
               <label style="font-size:16px;"><b>Tahun </b></label>
-              <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016', 2015 => '2015', 2014 => '2014', 2013 => '2013', 2012 => '2012', 2011 => '2011', 2010 => '2010', 2009 => '2009'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
+              <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016', 2015 => '2015', 2014 => '2014', 2013 => '2013', 2012 => '2012', 2011 => '2011', 2010 => '2010', 2009 => '2009'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
               <div class="help-block"></div>
             </div>
           </div>

@@ -6,7 +6,7 @@
  * @author Yuda Pramana
  */
 
-class KreditSektor extends SLP_Controller
+class Kreditsektor extends SLP_Controller
 {
 
     private $csrf;

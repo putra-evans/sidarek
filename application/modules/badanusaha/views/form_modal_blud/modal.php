@@ -11,8 +11,17 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
-                            <label for="id_profil_bu" class="control-label"><b>Bidang Usaha <font color="red">*</font></b></label>
-                            <?php echo form_dropdown('id_profil_bu', $profil_bus, isset($id_profil_bu) ? $id_profil_bu : null , 'class="select-all" id="id_profil_bu"'); ?>
+                            <label for="id_profil_bu" class="control-label"><b>Nama Badan Usaha <font color="red">*</font></b></label>
+                            <?php
+                            if ($id_profil_bu == '') { ?>
+
+                                <?php echo form_dropdown('id_profil_bu', $profil_bus, isset($id_profil_bu) ? $id_profil_bu : null, 'class="select-all" id="id_profil_bu"'); ?>
+
+                            <?php } else { ?>
+                                <?php echo form_dropdown('id_profil_bu', $profil_bu, isset($id_profil_bu) ? $id_profil_bu : null, 'class="select-all" id="id_profil_bu" '); ?>
+                            <?php }
+
+                            ?>
                             <div class="help-block"></div>
                         </div>
                     </div>
@@ -20,7 +29,7 @@
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
                             <label for="tahun" class="control-label"><b>Tahun Penyertaan Modal <font color="red">*</font></b></label>
-                            <?php echo form_dropdown('tahun', array('' => '-- Pilih Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
+                            <?php echo form_dropdown('tahun', array('' => '-- Pilih Tahun --', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016'), $this->input->post('tahun'), 'class="select-all" id="tahun"'); ?>
                             <div class="help-block"></div>
                         </div>
                     </div>
@@ -32,7 +41,7 @@
                             <div class="help-block"></div>
                         </div>
                     </div>
-                    
+
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
                             <label for="dividen" class="control-label"><b>Dividen <font color="red">*</font></b></label>
@@ -41,9 +50,9 @@
                         </div>
                     </div>
 
-                    
 
-                    <div class="col-xs-12 col-sm-12 descBox"></div>  
+
+                    <div class="col-xs-12 col-sm-12 descBox"></div>
 
                 </div>
 

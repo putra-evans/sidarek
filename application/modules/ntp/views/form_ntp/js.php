@@ -89,15 +89,15 @@
                             var eHTML = '<button type="button" class="btn btn-xs btn-belt-success nilaintp" data-title="Perikanan" data-tbl="perikanan" data-idtbl="perikanan" title="View data">Perikanan</button>&nbsp;';
 
                         if (row.nilai_tukar_petani_ntn_f == 0 || row.nilai_tukar_usaha_pertanian_f == 0 || row.indeks_harga_diterima_petani_f == 0 || row.penangkapan_perairan_umum_f == 0 || row.penangkapan_laut_f == 0 || row.indeks_harga_dibayar_petani_f == 0 || row.indeks_konsumsi_rumah_tangga_f == 0 || row.indeks_bppbm_f == 0)
-                            var fHTML = '<button type="button" class="btn btn-xs btn-belt-warning nilaintp" data-title="Perikanan Tangkap" data-tbl="perikanan_tangkap" data-idtbl="tangkap" title="View data">Perikanan Tangkap</button>&nbsp;';
+                            var fHTML = '<button type="button" class="btn btn-xs btn-belt-warning nilaintp" data-title="Perikanan Tangkap" data-tbl="perikanan_tangkap" data-idtbl="perikanan_tangkap" title="View data">Perikanan Tangkap</button>&nbsp;';
                         else
-                            var fHTML = '<button type="button" class="btn btn-xs btn-belt-success nilaintp" data-title="Perikanan Tangkap" data-tbl="perikanan_tangkap" data-idtbl="tangkap" title="View data">Perikanan Tangkap</button>&nbsp;';
+                            var fHTML = '<button type="button" class="btn btn-xs btn-belt-success nilaintp" data-title="Perikanan Tangkap" data-tbl="perikanan_tangkap" data-idtbl="perikanan_tangkap" title="View data">Perikanan Tangkap</button>&nbsp;';
 
 
                         if (row.nilai_tukar_petani_ntpi_g == 0 || row.nilai_tukar_usaha_pertanian_g == 0 || row.indeks_harga_diterima_petani_g == 0 || row.budidaya_air_tawar_g == 0 || row.budidaya_laut_g == 0 || row.indeks_harga_dibayar_petani_g == 0 || row.indeks_konsumsi_rumah_tangga_g == 0 || row.indeks_bppbm_g == 0)
-                            var gHTML = '<button type="button" class="btn btn-xs btn-belt-warning nilaintp" data-title="Perikanan Budidaya" data-tbl="perikanan_budidaya" data-idtbl="budidaya" title="View data">Perikanan Budidaya</button>&nbsp;';
+                            var gHTML = '<button type="button" class="btn btn-xs btn-belt-warning nilaintp" data-title="Perikanan Budidaya" data-tbl="perikanan_budidaya" data-idtbl="perikanan_budidaya" title="View data">Perikanan Budidaya</button>&nbsp;';
                         else
-                            var gHTML = '<button type="button" class="btn btn-xs btn-belt-success nilaintp" data-title="Perikanan Budidaya" data-tbl="perikanan_budidaya" data-idtbl="budidaya" title="View data">Perikanan Budidaya</button>&nbsp;';
+                            var gHTML = '<button type="button" class="btn btn-xs btn-belt-success nilaintp" data-title="Perikanan Budidaya" data-tbl="perikanan_budidaya" data-idtbl="perikanan_budidaya" title="View data">Perikanan Budidaya</button>&nbsp;';
 
 
                         return aHTML + bHTML + cHTML + dHTML + eHTML + fHTML + gHTML;

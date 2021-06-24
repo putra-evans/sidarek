@@ -49,7 +49,7 @@ class Model_bahanpokok extends CI_Model
             );
 
             $index++;
-            
+
             $komoditas_options .= "<option value=" . $r['id_komoditas'] . ">" . $r['nama_komoditas'] . "</option>";
             $kategori_options .= "<option value=" . $r['id_komoditas_kategori'] . ">" . $r['nama_kategori'] . "</option>";
         }
@@ -137,8 +137,8 @@ class Model_bahanpokok extends CI_Model
 
             if ($this->input->post('nama_kategori')) {
                 $data = array(
-                    'id_komoditas'            => $this->input->post('id_komoditas'),
-                    'nama'            => $this->input->post('nama_kategori'),
+                    'id_komoditas'              => $this->input->post('id_komoditas'),
+                    'nama'                      => $this->input->post('nama_kategori'),
                 );
                 $this->db->insert('ma_komoditas_kategori', $data);
             }

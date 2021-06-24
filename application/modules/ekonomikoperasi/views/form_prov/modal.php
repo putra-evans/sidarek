@@ -16,7 +16,7 @@
           <div class="col-xs-12 col-sm-12">
             <div class="form-group required">
               <label style="font-size:16px;"><b>Tahun </b></label>
-              <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016', 2015 => '2015', 2014 => '2014', 2013 => '2013', 2012 => '2012', 2011 => '2011', 2010 => '2010', 2009 => '2009'), $this->input->post('rujukan'), 'class="select-all" id="tahun"'); ?>
+              <?php echo form_dropdown('tahun', array('' => '-- Semua Tahun --', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018', 2017 => '2017', 2016 => '2016', 2015 => '2015', 2014 => '2014', 2013 => '2013', 2012 => '2012', 2011 => '2011', 2010 => '2010', 2009 => '2009'), $this->input->post('rujukan'), 'class="select-all" id="tahun"'); ?>
               <div class="help-block"></div>
             </div>
           </div>

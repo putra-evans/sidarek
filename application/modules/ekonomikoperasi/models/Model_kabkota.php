@@ -119,7 +119,7 @@ class Model_kabkota extends CI_Model
 		$this->db->from('ta_peragaan_kabkota peragaan');
 		$this->db->join('wa_regency regency', 'regency.id = peragaan.id_regency', 'left');
 
-		if($tahun){
+		if ($tahun) {
 			$this->db->where('peragaan.tahun', $tahun);
 		}
 
@@ -227,7 +227,8 @@ class Model_kabkota extends CI_Model
 		];
 
 		try {
-
+			// var_dump($this->input->post('id_regency'));
+			// exit;
 			$idPassed = $this->input->post('id_peragaan_kabkota');
 			$passed   = $this->db->where('id_peragaan_kabkota', $idPassed);
 
@@ -235,6 +236,7 @@ class Model_kabkota extends CI_Model
 
 				$data = array(
 					'tahun'								=> $this->input->post('tahun'),
+					'id_regency'						=> $this->input->post('id_regency'),
 					'total_jumlah_unit'					=> $this->input->post('total_jumlah_unit'),
 					'total_unit_aktif'					=> $this->input->post('total_unit_aktif'),
 					'total_unit_nonaktif'				=> $this->input->post('total_unit_nonaktif'),
@@ -260,7 +262,7 @@ class Model_kabkota extends CI_Model
 
 				$result['success'] = 'YEAH';
 				$result['status'] = true;
-				$result['message'] = 'Data Produk Kebijakan Berhasil Disimpan';
+				$result['message'] = 'Data Berhasil Disimpan';
 			}
 		} catch (\Exception $e) {
 			$result['info'] = $e->getMessage();

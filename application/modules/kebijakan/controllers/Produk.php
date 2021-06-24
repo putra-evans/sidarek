@@ -57,8 +57,6 @@ class Produk extends SLP_Controller
 
             if ($this->mp->validasiDataValue('new') == false) {
                 $result = array('status' => 0, 'message' => $this->form_validation->error_array());
-                // var_dump(($result));
-                // exit;
             } else {
                 $result = $this->mp->insert_data_produk();
             }

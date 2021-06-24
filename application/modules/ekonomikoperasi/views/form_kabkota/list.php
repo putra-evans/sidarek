@@ -22,7 +22,7 @@
               <div class="col-xs-12 col-sm-3">
                 <div class="form-group">
                   <label style="font-size:16px;"><b>Berdasarkan Tahun </b></label>
-                  <?php echo form_dropdown('tahun_filter', array('' => '-- Semua Tahun --', 2020 => '2020', 2019 => '2019', 2018 => '2018'), isset($tahun) ? $tahun : '', 'class="select-all"'); ?>
+                  <?php echo form_dropdown('tahun_filter', array('' => '-- Semua Tahun --', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018'), isset($tahun) ? $tahun : '', 'class="select-all"'); ?>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-3">

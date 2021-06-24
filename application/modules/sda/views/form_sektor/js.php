@@ -438,5 +438,74 @@
                 }
             });
         });
+
+        // On Delete
+        $(document).on('click', '.btnDeleteKomoditi', function(e) {
+            e.preventDefault();
+            var itemID = $(this).data('id');
+            // //(itemID)
+            var postData = {
+                'id_komoditi': itemID,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': $('input[name="' + csrfName + '"]').val()
+            };
+            // //(postData);
+            run_waitMe($('#formParent'));
+            bootbox.dialog({
+                title: "Konfirmasi",
+                message: "Apakah anda ingin menghapus data produk tersebut ?",
+                buttons: {
+                    "cancel": {
+                        "label": "<i class='fa fa-times'></i> Tidak",
+                        "className": "btn-danger",
+                        callback: function(response) {
+                            if (response) {
+                                $('#formParent').waitMe('hide');
+                            }
+                        }
+                    },
+                    "main": {
+                        "label": "<i class='fa fa-check'></i> Ya, Lanjutkan",
+                        "className": "btn-primary",
+                        callback: function(response) {
+                            if (response) {
+                                $.ajax({
+                                    url: site + 'sda/komoditi/delete',
+                                    type: "POST",
+                                    data: postData,
+                                    dataType: "json",
+                                }).done(function(data) {
+                                    // //(data);
+                                    csrfName = data.csrf.csrfName;
+                                    csrfHash = data.csrf.csrfHash;
+                                    $('input[name="' + csrfName + '"]').val(csrfHash);
+                                    if (data.status == 0) {
+                                        $('#errSuccess').html('<div class="alert alert-danger">' +
+                                            '<strong>Informasi!</strong> ' + data.message +
+                                            '</div>');
+                                    } else {
+                                        $('#errSuccess').html('<div class="alert alert-dismissable alert-success">' +
+                                            '<strong>Sukses!</strong> ' + data.message +
+                                            '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>' +
+                                            '</div>');
+                                        komodititbl.api().ajax.reload(null, false);
+                                        // secTbl.api().ajax.reload(null, false);
+                                    }
+                                    $('#formParent').waitMe('hide');
+                                }).fail(function() {
+                                    // //('masuk fail');
+                                    $('#errSuccess').html('<div class="alert alert-danger">' +
+                                        '<strong>Peringatan!</strong> Proses delete data gagal...' +
+                                        '</div>');
+                                    $('#formParent').waitMe('hide');
+                                }).always(function() {
+                                    $('#btnDelete').html('<i class="fa fa-trash-o"></i> Delete User');
+                                    $('#btnDelete').removeClass('disabled');
+                                });
+                            }
+                        }
+                    }
+                }
+            });
+        });
     });
 </script>

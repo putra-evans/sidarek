@@ -122,7 +122,7 @@ class Model_ntp extends CI_Model
                 'indeks_konsumsi_rumah_tangga_e'    => $r['indeks_konsumsi_rumah_tangga_e'],
                 'indeks_bppbm_e'                    => $r['indeks_bppbm_e'],
 
-                'id_tangkap'                        => $r['id_tangkap'],
+                'id_perikanan_tangkap'              => $r['id_perikanan_tangkap'],
                 'nilai_tukar_petani_ntn_f'          => $r['nilai_tukar_petani_ntn_f'],
                 'nilai_tukar_usaha_pertanian_f'     => $r['nilai_tukar_usaha_pertanian_f'],
                 'indeks_harga_diterima_petani_f'    => $r['indeks_harga_diterima_petani_f'],
@@ -132,7 +132,7 @@ class Model_ntp extends CI_Model
                 'indeks_konsumsi_rumah_tangga_f'    => $r['indeks_konsumsi_rumah_tangga_f'],
                 'indeks_bppbm_f'                    => $r['indeks_bppbm_f'],
 
-                'id_budidaya'                       => $r['id_budidaya'],
+                'id_perikanan_budidaya'                       => $r['id_perikanan_budidaya'],
                 'nilai_tukar_petani_ntpi_g'         => $r['nilai_tukar_petani_ntpi_g'],
                 'nilai_tukar_usaha_pertanian_g'     => $r['nilai_tukar_usaha_pertanian_g'],
                 'indeks_harga_diterima_petani_g'    => $r['indeks_harga_diterima_petani_g'],

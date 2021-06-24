@@ -6,7 +6,7 @@
  * @author Yuda Pramana
  */
 
-class KreditWilayah extends SLP_Controller
+class Kreditwilayah extends SLP_Controller
 {
 
     private $csrf;

@@ -27,6 +27,20 @@ class Modal extends SLP_Controller
             $this->breadcrumb->add('BUMD', site_url('badanusaha/profil'));
             $this->breadcrumb->add('Progress Perkembangan', '#');
             $this->session_info['page_name'] = "Progress Perkembangan BUMD ";
+            $this->session_info['id_profil_bu'] = $id;
+
+
+
+            $this->db->from('ma_profil_bu');
+            $this->db->where('id_jenis_bu', '1');
+            $query = $this->db->get();
+            $data = [];
+            $data[''] = '-- Semua Bidang --';
+            foreach ($query->result() as $key => $value) {
+                $data[$value->id_profil_bu] = $value->nama;
+            }
+
+            $this->session_info['profil_bus'] = $data;
         } else {
             $this->db->select('*');
             $this->db->from('ma_profil_bu');
@@ -41,18 +55,24 @@ class Modal extends SLP_Controller
 
             $this->session_info['page_name'] = "Progress Perkembangan dari " . $bu->nama;
             $this->session_info['id_profil_bu'] = $id;
+            $this->session_info['profil_bu'] = $bu->nama;
+
+            $this->db->from('ma_profil_bu');
+            $this->db->where('id_jenis_bu', '1');
+            $query = $this->db->get()->row_array();
+
+
+
+            // $data = [];
+            // $data[''] = '-- Semua Bidang --';
+            // foreach ($query->result() as $key => $value) {
+            //     $data[$value->id_profil_bu] = $value->nama;
+            // }
+
+            $this->session_info['profil_bus'] = $query['nama'];
         }
 
-        $this->db->from('ma_profil_bu');
-        $this->db->where('id_jenis_bu', '1');
-        $query = $this->db->get();
-        $data = [];
-        $data[''] = '-- Semua Bidang --';
-        foreach ($query->result() as $key => $value) {
-            $data[$value->id_profil_bu] = $value->nama;
-        }
 
-        $this->session_info['profil_bus'] = $data;
 
         $this->template->build('form_modal/list', $this->session_info);
     }

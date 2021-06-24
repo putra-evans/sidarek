@@ -37,18 +37,19 @@ class Komoditi extends SLP_Controller
             $result['csrf'] = $this->csrf;
             $this->output->set_content_type('application/json')->set_output(json_encode($result));
         }
-       
     }
 
-    public function delete(){
+    public function delete()
+    {
 
         if (!$this->input->is_ajax_request()) {
             exit('No direct script access allowed');
         } else {
             $session   = $this->app_loader->current_account();
-            $produkId     = $this->encryption->decrypt($this->input->post('produkId', true));
+            $id_komoditi     = $this->encryption->decrypt($this->input->post('id_komoditi', true));
+
             if (!empty($session)) {
-                $data = $this->mk->delete_data_produksi();
+                $data = $this->mk->delete_data_komoditi();
                 if ($data['message'] == 'SUCCESS') {
                     $result = array('status' => 1, 'message' => 'Data produksi SDA berhasil dihapus...', 'csrf' => $this->csrf);
                 } else {
@@ -61,7 +62,8 @@ class Komoditi extends SLP_Controller
         }
     }
 
-    public function update() {
+    public function update()
+    {
         if (!$this->input->is_ajax_request()) {
             exit('No direct script access allowed');
         } else {
@@ -70,5 +72,4 @@ class Komoditi extends SLP_Controller
             $this->output->set_content_type('application/json')->set_output(json_encode($result));
         }
     }
-
 }

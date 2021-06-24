@@ -20,17 +20,17 @@
         processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>',
         searchPlaceholder: "Search records"
       },
-      dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-      buttons: [{
-        text: '<i class="fa fa-plus"></i> Tambah Data',
-        attr: {
-          title: 'Add Button',
-          class: 'btn btn-primary',
-          id: 'btnAdd'
-        },
-      }],
+      // dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+      //   "<'row'<'col-sm-12'tr>>" +
+      //   "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      // buttons: [{
+      //   text: '<i class="fa fa-plus"></i> Tambah Data',
+      //   attr: {
+      //     title: 'Add Button',
+      //     class: 'btn btn-primary',
+      //     id: 'btnAdd'
+      //   },
+      // }],
       serverSide: true,
       ordering: false,
       ajax: {
@@ -41,8 +41,7 @@
           d.csrf_test_name = csrfHash;
         },
       },
-      columns: [
-        {
+      columns: [{
           data: "tahun",
           className: "text-left",
         },
@@ -161,7 +160,7 @@
       $('form#formEntry').trigger('reset');
       $('.lblPass').text('*');
 
-      $('#tahun').val('<?php echo isset($tahun) ? $tahun : ''; ?>').trigger('change');      
+      $('#tahun').val('<?php echo isset($tahun) ? $tahun : ''; ?>').trigger('change');
       $('#id_regency').val('').trigger('change');
       $('#id_peragaan_koperasi').val('');
       $('#total_jumlah_unit').val('');
@@ -231,9 +230,9 @@
       formReset();
       $('#formEntry').attr('action', site + 'ekonomikoperasi/peragaankabkota/update');
 
-      $('#id_peragaan_kabkota').val(data.id_peragaan_kabkota).trigger('change');  
-      $('#tahun').val(data.tahun).trigger('change');  
-      $('#id_regency').val(data.id_regency).trigger('change');    
+      $('#id_peragaan_kabkota').val(data.id_peragaan_kabkota).trigger('change');
+      $('#tahun').val(data.tahun).trigger('change');
+      $('#id_regency').val(data.id_regency).trigger('change');
       $('#id_peragaan_koperasi').val(data.id_peragaan_koperasi);
       $('#total_jumlah_unit').val(data.total_jumlah_unit);
       $('#total_unit_aktif').val(data.total_unit_aktif);

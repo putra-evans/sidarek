@@ -26,14 +26,14 @@ class Peragaanprov extends SLP_Controller
         $this->breadcrumb->add('Dashboard', site_url('home'));
         $this->breadcrumb->add('Rincian Koperasi di Provinsi', '#');
 
-        $this->session_info['page_name'] = "Rindian Peragaan Koperasi di Provinsi";
+        $this->session_info['page_name'] = "Rincian Peragaan Koperasi di Provinsi";
         $this->template->build('form_prov/list', $this->session_info);
     }
 
     public function listview()
     {
 
-        $tahun 		= urldecode($this->uri->segment(4, 0));
+        $tahun         = urldecode($this->uri->segment(4, 0));
         $tahun = $tahun != 0 ? $tahun : null;
         // Get Session
         $session = $this->app_loader->current_account();
