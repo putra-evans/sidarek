@@ -1,4 +1,4 @@
-<?php (defined('BASEPATH')) OR exit('No direct script access allowed');
+<?php (defined('BASEPATH')) or exit('No direct script access allowed');
 
 /**
  * Description of home class
@@ -6,20 +6,21 @@
  * @author Yuda Pramana
  */
 
-class Home extends SLP_Controller {
+class Home extends SLP_Controller
+{
 
 	public function __construct()
-  {
-    parent::__construct();
+	{
+		parent::__construct();
 		$this->load->model(array('model_home' => 'mhome'));
-  }
+	}
 
 	public function index()
 	{
 		$this->breadcrumb->add('Dashboard', site_url('home'));
 
 		$this->session_info['page_name'] = "Home";
-    $this->template->build('vhome', $this->session_info);
+		$this->template->build('vhome', $this->session_info);
 	}
 }
 
