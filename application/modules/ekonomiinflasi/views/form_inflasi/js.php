@@ -218,6 +218,7 @@
     $('#modalEntryForm').modal('hide');
     $('#modalSecondForm').modal('hide');
     $('#modalImportForm').modal('hide');
+    window.location.reload();
   });
 
   // Button Add
