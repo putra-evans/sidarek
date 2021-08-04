@@ -40,7 +40,7 @@ class Model_bahan_pangan extends CI_Model
         $dataseries = [];
         $categories = [];
         foreach ($arrData as $key => $item) {
-            $tdate = date("Y-m-d", strtotime($item['year'] .'W'.$item['minggu_tahun']));
+            $tdate = date("Y-m-d", strtotime($item['year'] . 'W' . $item['minggu_tahun']));
             $categories[] = $tdate;
             foreach ($item['data'] as $key => $value) {
                 $dataseries[$value['nama_komoditas']][$value['kategori_komoditas']][$value['jenis_komoditas']][] = floatval($value['harga']);

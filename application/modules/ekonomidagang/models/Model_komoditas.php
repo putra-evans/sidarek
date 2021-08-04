@@ -179,7 +179,7 @@ class Model_komoditas extends CI_Model
 
             $result['success'] = 'YEAH';
             $result['status'] = true;
-            $result['message'] = 'Data Subsidi Berhasil Disimpan';
+            $result['message'] = 'Data Berhasil Disimpan';
         } catch (\Exception $e) {
             $result['info'] = $e->getMessage();
         }

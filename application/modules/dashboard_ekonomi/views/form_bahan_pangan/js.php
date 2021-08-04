@@ -1,5 +1,8 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
-
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!-- optional -->
+<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <script type="text/javascript">
     var site = '<?php echo site_url(); ?>';
@@ -55,10 +58,7 @@
             url: site + '/api/pangan/data/' + month + '/' + year,
             type: "GET",
             success: function(data) {
-                //(data);
-
                 var container = document.getElementById('container');
-
                 if (data.length === 0) {
                     $('#container').append(`<div class="col-xs-12 col-sm-12"> 
                                 <div class="panel">
@@ -109,6 +109,9 @@
                             title: {
                                 text: 'Harga Bahan Pokok (Rupiah)'
                             }
+                        },
+                        exporting: {
+                            enabled: true
                         },
                         series: dataseries,
                     });

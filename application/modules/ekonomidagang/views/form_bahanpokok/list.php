@@ -9,7 +9,7 @@
         <div class="col-xs-6 col-sm-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
-                    <h4>Data Komoditi Bahan Pokok</h4>
+                    <h4>Data Komoditi Berdasarkan Kategori Bahan Pokok</h4>
                 </div>
                 <div class="panel-body collapse in">
 
@@ -33,7 +33,7 @@
         <div class="col-xs-6 col-sm-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
-                    <h4>Data Jenis Bahan Dari Kategori  <span id="komoditi-kategori-name"></span></h4>
+                    <h4>Rincian Data Berdasarkan Kategori <span id="komoditi-kategori-name"></span></h4>
                 </div>
                 <div class="panel-body collapse in">
 

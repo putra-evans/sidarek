@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-12">
-            <button class="btn btn-default" aria-controls="mainTbl" type="button" title="btnDetail" style="margin-right:10px; margin-bottom:20px;" id="btnDetail"><span>2021</span></button>
+            <!-- <button class="btn btn-default" aria-controls="mainTbl" type="button" title="btnDetail" style="margin-right:10px; margin-bottom:20px;" id="btnDetail"><span>2021</span></button> -->
         </div>
 
 

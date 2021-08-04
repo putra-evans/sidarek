@@ -14,7 +14,8 @@
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
                             <label for="nama_komoditas" class="control-label"><b>Nama Komoditas <font color="red">*</font></b></label>
-                            <input type="text" class="form-control" name="nama_komoditas" id="nama_komoditas" placeholder="Nama Komoditas">
+                            <?php echo form_dropdown('nama_komoditas', $list_komoditi, $this->input->post('nama_komoditas', TRUE), 'class="select-all" id="nama_komoditas"'); ?>
+                            <!-- <input type="text" class="form-control" name="nama_komoditas" id="nama_komoditas" placeholder="Nama Komoditas"> -->
                             <div class="help-block"></div>
                         </div>
                     </div>
@@ -24,6 +25,9 @@
                             <label for="nama_kategori" class="control-label"><b>Nama Kategori <font color="red">*</font></b></label>
                             <input type="text" class="form-control" name="nama_kategori" id="nama_kategori" placeholder="Nama Kategori">
                             <div class="help-block"></div>
+                            <!-- <em>
+                                <p>Kategori tidak perlu diisi jika <code>Komoditi</code> tidak <code>Memiliki Kategori</code></p>
+                            </em> -->
                         </div>
                     </div>
 
@@ -54,21 +58,21 @@
 
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
-                        <label for="id_komoditas_for_jenis" class="control-label"><b>Komoditi <font color="red">*</font></b></label>
-                        <?php echo form_dropdown('id_komoditas_for_jenis', array('' => '-- Pilih Sektor --') , $this->input->post('id_komoditas_for_jenis'), 'class="select-all" id="id_komoditas_for_jenis"');?>
-                        <div class="help-block"></div>
+                            <label for="id_komoditas_for_jenis" class="control-label"><b>Komoditi <font color="red">*</font></b></label>
+                            <?php echo form_dropdown('id_komoditas_for_jenis', array('' => '-- Pilih Sektor --'), $this->input->post('id_komoditas_for_jenis'), 'class="select-all" id="id_komoditas_for_jenis"'); ?>
+                            <div class="help-block"></div>
                         </div>
                     </div>
 
 
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
-                        <label for="id_kategori_for_jenis" class="control-label"><b>Kategori <font color="red">*</font></b></label>
-                        <?php echo form_dropdown('id_kategori_for_jenis', array('' => '-- Pilih Sektor --') , $this->input->post('id_kategori_for_jenis'), 'class="select-all" id="id_kategori_for_jenis"');?>
-                        <div class="help-block"></div>
+                            <label for="id_kategori_for_jenis" class="control-label"><b>Kategori <font color="red">*</font></b></label>
+                            <?php echo form_dropdown('id_kategori_for_jenis', array('' => '-- Pilih Sektor --'), $this->input->post('id_kategori_for_jenis'), 'class="select-all" id="id_kategori_for_jenis"'); ?>
+                            <div class="help-block"></div>
                         </div>
                     </div>
-                    
+
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
                             <label for="nama_jenis" class="control-label"><b>Nama Jenis <font color="red">*</font></b></label>
@@ -79,9 +83,9 @@
 
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group required">
-                        <label for="satuan" class="control-label"><b>Satuan <font color="red">*</font></b></label>
-                        <?php echo form_dropdown('satuan', array('' => '-- Pilih Satuan --', 'Kg' => 'Kg', 'Liter' => 'Liter', 'Ekor' => 'Ekor', '10 Butir' => '10 Butir') , $this->input->post('satuan'), 'class="select-all" id="satuan"');?>
-                        <div class="help-block"></div>
+                            <label for="satuan" class="control-label"><b>Satuan <font color="red">*</font></b></label>
+                            <?php echo form_dropdown('satuan', array('' => '-- Pilih Satuan --', 'Kg' => 'Kg', 'Liter' => 'Liter', 'Ekor' => 'Ekor', '10 Butir' => '10 Butir'), $this->input->post('satuan'), 'class="select-all" id="satuan"'); ?>
+                            <div class="help-block"></div>
                         </div>
                     </div>
 

@@ -14,21 +14,22 @@
         mainTbl = $('#mainTbl').dataTable({
             processing: true,
             searching: true,
+            paging: false,
             language: {
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>',
                 searchPlaceholder: "Search records"
             },
-            // dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-            //     "<'row'<'col-sm-12'tr>>" +
-            //     "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-            // buttons: [{
-            //     text: '<i class="fa fa-plus"></i> Tambah Data',
-            //     attr: {
-            //         title: 'Add Button',
-            //         class: 'btn btn-primary',
-            //         id: 'btnAdd'
-            //     },
-            // }],
+            dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [{
+                text: '<i class="fa fa-plus"></i> Tambah Data Kategori',
+                attr: {
+                    title: 'Add Button',
+                    class: 'btn btn-primary',
+                    id: 'btnAdd'
+                },
+            }],
             serverSide: true,
             ordering: false,
             ajax: {
@@ -156,8 +157,7 @@
         $(document).on('click', '.btnLook', function(e) {
 
             var data = mainTbl.api().row($(this).parents('tr')).data();
-            //(data);
-
+            // console.log(data);
             id_komoditas_for_jenis = data.id_komoditas;
             id_kategori_for_jenis = data.id_komoditas_kategori == '' ? null : data.id_komoditas_kategori;
             $('#id_komoditas_for_jenis').val(id_komoditas_for_jenis).trigger('change');
@@ -182,11 +182,7 @@
             $('.required').removeClass('has-error');
             $('form#formEntry').trigger('reset');
             $('.lblPass').text('*');
-
-
-            $('#id_komoditas').val('');
-            $('#nama_komoditas').val('');
-            $('#nama_kategori').val('');
+            $('#nama_komoditas').select2('val', '');
 
         }
 
@@ -214,6 +210,7 @@
 
         // Button Add
         $(document).on('click', '#btnAdd', function(e) {
+            formReset();
 
             var descBox = $('.descBox');
             descBox.empty();
@@ -227,11 +224,9 @@
         });
 
         $(document).on('click', '.btnEdit', function(e) {
-
             $('#judul-form').html('EDIT ');
 
             var data = mainTbl.api().row($(this).parents('tr')).data();
-            //(data);
             e.stopPropagation();
             $('#formEntry').attr('action', site + 'ekonomidagang/bahanpokok/update');
 
@@ -240,7 +235,8 @@
             $('#id_komoditas').val(data.id_komoditas);
             $('#id_komoditas_kategori').val(data.id_komoditas_kategori);
 
-            $('#nama_komoditas').val(data.nama_komoditas);
+            // $('#nama_komoditas').val(data.nama_komoditas);
+            $('#nama_komoditas').select2('val', data.id_komoditas);
             $('#nama_kategori').val(data.nama_kategori);
             $('#satuan').val(data.satuan);
 
@@ -251,12 +247,12 @@
         });
 
         $(document).on('click', '.btnDelete', function(e) {
-
             e.preventDefault();
-
             var itemID = $(this).data('id');
+            var idkategori = $(this).data('id_kategori');
             var postData = {
-                'id_komoditas_harga': itemID,
+                'id_komoditas': itemID,
+                'id_kategori': idkategori,
                 '<?php echo $this->security->get_csrf_token_name(); ?>': $('input[name="' + csrfName + '"]').val()
             };
             //(postData);
@@ -450,10 +446,13 @@
 
         // On Add
         $(document).on('click', '#btnAddKomoditi', function(e) {
-            //('jenis');
+            $("#nama_jenis").val("");
+            $("#satuan").select2("val", "");
 
+            // $('form#formJenis').trigger('reset');
 
             $("#id_sektor_for_komoditi").select2("val", id_komoditas_for_jenis);
+            $("#id_kategori_for_jenis").select2("val", id_kategori_for_jenis);
             $('#judul-form-komoditi').html('ENTRI ');
             $('#modalJenis').modal({
                 backdrop: 'static'

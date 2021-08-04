@@ -25,6 +25,23 @@ class Model_bahanpokok extends CI_Model
             return true;
     }
 
+
+    public function getListKomoditi()
+    {
+        $this->db->from('ref_komoditas');
+        $query = $this->db->get();
+
+        $data = [];
+        $data[''] = '-- Komoditi --';
+        foreach ($query->result() as $key => $value) {
+
+            // $data[$value->nama];
+            $data[$value->id_komoditas] = $value->nama;
+        }
+
+        return $data;
+    }
+
     public function process_datatables($param)
     {
 
@@ -38,14 +55,21 @@ class Model_bahanpokok extends CI_Model
         $kategori_options = '<option value="">-- Semua Kategori --</option>';
 
         foreach ($dataProduk as $r) {
+
+            if ($r['nama_kategori'] == '') {
+                $pertanyaan = '<button type="button" class="btn btn-xs btn-success btnLook" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" title="Look Commodity">Lihat Jenis </button> <button type="button" class="btn btn-xs btn-danger btnDelete" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" data-id_kategori="' . $this->encryption->encrypt($r['id_komoditas_kategori']) . '" title="Delete"><i class="fa fa-trash"></i></button>';
+            } else {
+                $pertanyaan = '<button type="button" class="btn btn-xs btn-orange btnEdit" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" title="Edit data"><i class="fa fa-pencil"></i> </button> <button type="button" class="btn btn-xs btn-success btnLook" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" title="Look Commodity">Lihat Jenis </button> <button type="button" class="btn btn-xs btn-danger btnDelete" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" data-id_kategori="' . $this->encryption->encrypt($r['id_komoditas_kategori']) . '" title="Delete"><i class="fa fa-trash"></i></button>';
+            }
+
+
             $data[] = array(
                 'index'                     => $index,
                 'id_komoditas'              => $r['id_komoditas'],
                 'nama_komoditas'            => $r['nama_komoditas'],
                 'id_komoditas_kategori'     => $r['id_komoditas_kategori'],
                 'nama_kategori'             => $r['nama_kategori'],
-                'action'                    => '<button type="button" class="btn btn-xs btn-orange btnEdit" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" title="Edit data"><i class="fa fa-pencil"></i> </button>
-                                            <button type="button" class="btn btn-xs btn-success btnLook" data-id="' . $this->encryption->encrypt($r['id_komoditas']) . '" title="Look Commodity">Lihat Jenis </button>'
+                'action'                    => $pertanyaan
             );
 
             $index++;
@@ -128,20 +152,19 @@ class Model_bahanpokok extends CI_Model
 
         try {
 
+            // $data = array(
+            //     'nama'            => $this->input->post('nama_komoditas'),
+            // );
+
+            // $this->db->insert('ref_komoditas', $data);
+            // $id_komoditas = $this->db->insert_id();
+
             $data = array(
-                'nama'            => $this->input->post('nama_komoditas'),
+                'id_komoditas'              => $this->input->post('nama_komoditas'),
+                'nama'                      => $this->input->post('nama_kategori'),
             );
+            $this->db->insert('ma_komoditas_kategori', $data);
 
-            $this->db->insert('ref_komoditas', $data);
-            $id_komoditas = $this->db->insert_id();
-
-            if ($this->input->post('nama_kategori')) {
-                $data = array(
-                    'id_komoditas'              => $this->input->post('id_komoditas'),
-                    'nama'                      => $this->input->post('nama_kategori'),
-                );
-                $this->db->insert('ma_komoditas_kategori', $data);
-            }
 
             $result['success'] = 'YEAH';
             $result['status'] = true;
@@ -165,27 +188,14 @@ class Model_bahanpokok extends CI_Model
 
         try {
 
-            $idkomoditas = $this->input->post('id_komoditas');
-            $produk   = $this->db->where('id_komoditas', $idkomoditas);
-
-            if ($produk) {
-
-                $data = array(
-                    'nama'            => $this->input->post('nama_komoditas'),
-                );
-                $this->db->update('ref_komoditas', $data);
-
-                $result['success'] = 'YEAH';
-                $result['status'] = true;
-                $result['message'] = 'Data komoditas Berhasil Disimpan';
-            }
 
             $idKategori = $this->input->post('id_komoditas_kategori');
-            $kategori = $this->db->where('id_komoditas_kategori', $idKategori);
+            $kategori   = $this->db->where('id_komoditas_kategori', $idKategori);
 
             if ($kategori) {
-
                 $data = array(
+
+                    'id_komoditas'    => $this->input->post('nama_komoditas'),
                     'nama'            => $this->input->post('nama_kategori'),
                 );
 
@@ -204,17 +214,50 @@ class Model_bahanpokok extends CI_Model
 
     public function delete_data()
     {
-        $idKomoditas     = $this->encryption->decrypt($this->input->post('id_komoditas', true));
-        $idKategori     = $this->encryption->decrypt($this->input->post('id_komoditas_kategori', true));
+        $idKomoditas        = $this->encryption->decrypt($this->input->post('id_komoditas', true));
+        $idKategori         = $this->encryption->decrypt($this->input->post('id_kategori', true));
+
+        $this->db->where('id_komoditas', $idKomoditas);
+        $this->db->from('ma_komoditas_kategori');
+        $query = $this->db->count_all_results();
+
+        if ($query > 0) {
+            $this->db->where('id_komoditas_kategori', $idKategori);
+            $this->db->delete('ma_komoditas_kategori');
+
+            $this->db->where('id_komoditas_kategori', $idKategori);
+            $this->db->delete('ma_komoditas_jenis');
+        } else {
+            $this->db->where('id_komoditas', $idKomoditas);
+            $this->db->delete('ma_komoditas_jenis');
+
+            $this->db->where('id_komoditas', $idKomoditas);
+            $this->db->delete('ref_komoditas');
+        }
 
 
         /*query delete*/
-        $this->db->where('id_komoditas', $idKomoditas);
-        $this->db->where('id_komoditas_kategori', $idKategori);
-        $this->db->delete('ma_komoditas_kategori');
+        // $this->db->where('id_komoditas', $idKomoditas);
+        // $this->db->where('id_komoditas_kategori', $idKategori);
+        // $this->db->delete('ma_komoditas_kategori');
 
-        $this->db->where('id_komoditas', $idKomoditas);
-        $this->db->delete('ref_komoditas');
+        // $this->db->where('id_komoditas', $idKomoditas);
+        // $this->db->delete('ref_komoditas');
+
+        // if ($idKategori == '') {
+        //     $this->db->where('id_komoditas', $idKomoditas);
+        //     $this->db->delete('ma_komoditas_jenis');
+        // } else {
+        //     $this->db->where('id_komoditas_kategori', $idKategori);
+        //     $this->db->where('id_komoditas', $idKomoditas);
+        //     $this->db->delete('ma_komoditas_jenis');
+        // }
+
+
+        // $this->db->where('id_komoditas', $idKomoditas);
+        // $this->db->delete('ma_komoditas_jenis');
+
+
 
         return array('message' => 'SUCCESS');
     }
