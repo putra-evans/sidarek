@@ -10,15 +10,18 @@
     var month, currDate, momentDate, weekNumber;
 
     $(document).ready(function() {
-
         // DEFINE NEW DATE
         var d = new Date();
+        console.log(d)
         month = d.getMonth() + 1;
+
         var day = d.getDate();
+
 
         currDate = d.getFullYear() + '-' +
             (month < 10 ? '0' : '') + month + '-' +
             (day < 10 ? '0' : '') + day;
+
 
         moment.locale('en', {
             week: {
@@ -26,7 +29,7 @@
             } // Monday is the first day of the week
         });
 
-        momentDate = moment(currDate, "YYYY-MM-DD").day(1).format("YYYY/MM/DD");
+        // momentDate = moment(currDate, "YYYY-MM-DD").day(1).format("YYYY/MM/DD");
 
         renderChart(month, year);
     });
@@ -35,18 +38,21 @@
 
 
     $('#btnDetail').datepicker({
-        "setDate": new Date(),
-        "autoclose": true,
-        format: "yyyy",
-        viewMode: "years",
-        minViewMode: "years",
-        startDate: '-5y',
-        endDate: '+1y'
+        format: "mm-yyyy",
+        viewMode: "months",
+        minViewMode: "months"
     }).on('changeDate', function(ev) {
         currDate = ev.format();
         $('#btnDetail').html(currDate);
-        year = currDate;
-        renderChart(year);
+        data = currDate;
+
+        var myarr = data.split("-");
+        var month = myarr[0];
+        var year = myarr[1];
+
+        // console.log(month, year)
+
+        renderChart(month, year);
     });
 
 
@@ -55,7 +61,7 @@
         $('#container').empty();
 
         $.ajax({
-            url: site + '/api/pangan/data/' + month + '/' + year,
+            url: site + 'api/pangan/data/' + month + '/' + year,
             type: "GET",
             success: function(data) {
                 var container = document.getElementById('container');
@@ -74,11 +80,8 @@
                                     </div> 
                                 </div> 
                             </div>`);
-
                     var dataseries = [];
-
                     $.each(data.dataseries, function(key, item) {
-
                         $.each(item, function(kakey, kaitem) {
 
                             $.each(kaitem, function(jekey, jeitem) {
@@ -87,13 +90,8 @@
                                     'name': key + ' ' + kakey + ' ' + jekey
                                 });
                             });
-
                         });
-
-                        //(dataseries);
-
                     });
-
                     const chart = Highcharts.chart('chart', {
                         chart: {
                             type: 'line',
@@ -115,13 +113,7 @@
                         },
                         series: dataseries,
                     });
-
-
                 }
-
-
-
-
             },
         });
     }

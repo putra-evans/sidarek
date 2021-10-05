@@ -119,6 +119,7 @@ class Model_produk extends CI_Model
 		$this->db->from('ma_produk_kebijakan p');
 		$this->db->join('ref_bidang_ekonomi b', 'p.id_bidang = b.id_bidang', 'left');
 		$this->db->join('ref_tipe_kebijakan c', 'p.id_tipe = c.id_tipe', 'left');
+		$this->db->order_by('p.id_produk', 'DESC');
 
 		if (isset($post['id_bidang']) and $post['id_bidang'] != '') {
 			$this->db->where('b.id_bidang', $post['id_bidang']);

@@ -69,8 +69,8 @@ class Model_bahan_pangan extends CI_Model
         $this->db->join(
             'ta_komoditas_harga 	harga',
             'harga.id_komoditas_jenis = jenis.id_komoditas_jenis 
-                AND harga.minggu_tahun = ' . $minggu_tahun . '
-                AND YEAR(harga.monday_date) = ' . $year . '',
+            AND harga.minggu_tahun = ' . $minggu_tahun . '
+            AND YEAR(harga.monday_date) = ' . $year . '',
             'left'
         );
 

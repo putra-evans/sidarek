@@ -88,6 +88,8 @@ class Model_harga_berlaku extends CI_Model
 		$this->db->from('ta_pdrb a');
 		$this->db->join('ma_lapangan_usaha b', 'b.id_lapangan_usaha = a.id_lapangan_usaha', 'left');
 		$this->db->where('a.jenis_pdrb', 'harga berlaku');
+		$this->db->order_by('a.id_pdrb', 'DESC');
+
 
 		if (isset($post['id_lapusaha_filter']) and $post['id_lapusaha_filter'] != '') {
 			$this->db->where('b.id_lapangan_usaha', $post['id_lapusaha_filter']);

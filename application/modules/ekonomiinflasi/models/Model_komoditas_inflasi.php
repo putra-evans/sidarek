@@ -90,6 +90,8 @@ class Model_komoditas_inflasi extends CI_Model
         $this->db->join('ref_komoditas_penyumbang b',   'a.id_komoditas_penyumbang = b.id_komoditas_penyumbang', 'left');
         $this->db->join('ref_jenis_komoditas_penyumbang c', 'b.id_jenis_komoditas = c.id_jenis_komoditas', 'left');
         $this->db->where('a.tipe', 'inflasi');
+        $this->db->order_by('a.id_kom_inflasi', 'DESC');
+
 
 
         if (isset($post['jenis_komoditas']) and $post['jenis_komoditas'] != '') {

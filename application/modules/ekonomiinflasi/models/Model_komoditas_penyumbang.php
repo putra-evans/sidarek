@@ -91,6 +91,8 @@ class Model_komoditas_penyumbang extends CI_Model
         ');
         $this->db->from('ref_komoditas_penyumbang a');
         $this->db->join('ref_jenis_komoditas_penyumbang b', 'a.id_jenis_komoditas = b.id_jenis_komoditas', 'left');
+        $this->db->order_by('a.id_komoditas_penyumbang', 'DESC');
+
         $column_search = array('nama_komoditas_penyumbang');
 
         $i = 0;

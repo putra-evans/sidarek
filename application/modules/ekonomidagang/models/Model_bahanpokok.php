@@ -107,6 +107,7 @@ class Model_bahanpokok extends CI_Model
         ');
         $this->db->from('ref_komoditas komoditas');
         $this->db->join('ma_komoditas_kategori 	kategori', 'kategori.id_komoditas = komoditas.id_komoditas', 'left');
+        $this->db->order_by('komoditas.id_komoditas', 'DESC');
 
         if (isset($post['id_komoditas']) and $post['id_komoditas'] != '') {
             $this->db->where('komoditas.id_komoditas', $post['id_komoditas']);
@@ -131,8 +132,6 @@ class Model_bahanpokok extends CI_Model
             }
             $i++;
         }
-        // End of Query Filter
-
         if ($_POST['length'] != -1) {
             $this->db->limit($_POST['length'], $_POST['start']);
         }
@@ -149,16 +148,7 @@ class Model_bahanpokok extends CI_Model
             'message' => null,
             'info' => null
         ];
-
         try {
-
-            // $data = array(
-            //     'nama'            => $this->input->post('nama_komoditas'),
-            // );
-
-            // $this->db->insert('ref_komoditas', $data);
-            // $id_komoditas = $this->db->insert_id();
-
             $data = array(
                 'id_komoditas'              => $this->input->post('nama_komoditas'),
                 'nama'                      => $this->input->post('nama_kategori'),

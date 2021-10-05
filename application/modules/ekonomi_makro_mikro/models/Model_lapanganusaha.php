@@ -73,6 +73,8 @@ class Model_lapanganusaha extends CI_Model
 							per.lapangan_usaha
 		');
 		$this->db->from('ma_lapangan_usaha per');
+		$this->db->order_by('per.id_lapangan_usaha', 'DESC');
+
 
 		if (isset($post['nama']) and $post['nama'] != '') {
 			$this->db->where('per.lapangan_usaha', $post['nama']);
