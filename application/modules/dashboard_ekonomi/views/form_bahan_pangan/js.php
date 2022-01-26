@@ -30,21 +30,22 @@
         });
 
         // momentDate = moment(currDate, "YYYY-MM-DD").day(1).format("YYYY/MM/DD");
-
-        renderChart(month, year);
+        renderChart(year);
     });
 
 
 
 
     $('#btnDetail').datepicker({
-        format: "mm-yyyy",
-        viewMode: "months",
-        minViewMode: "months"
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
     }).on('changeDate', function(ev) {
         currDate = ev.format();
         $('#btnDetail').html(currDate);
         data = currDate;
+
+        console.log(data);
 
         var myarr = data.split("-");
         var month = myarr[0];
@@ -52,16 +53,16 @@
 
         // console.log(month, year)
 
-        renderChart(month, year);
+        renderChart(data);
     });
 
 
-    function renderChart(month, year) {
+    function renderChart(data) {
 
         $('#container').empty();
 
         $.ajax({
-            url: site + 'api/pangan/data/' + month + '/' + year,
+            url: site + 'api/pangan/data/' + data,
             type: "GET",
             success: function(data) {
                 var container = document.getElementById('container');

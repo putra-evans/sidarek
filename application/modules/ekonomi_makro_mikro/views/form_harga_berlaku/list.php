@@ -45,7 +45,7 @@
     <div class="col-xs-12 col-sm-12">
       <div class="panel panel-green">
         <div class="panel-heading">
-          <h4>Data Realisasi Subsidi</h4>
+          <h4>Harga Berlaku</h4>
           <h4 style="font-weight:bold;text-align:right; float:right;">
             <a href="javascript:void(0);" class="btnFilter" style="text-decoration:none;color:#FFFFFF;">
               <i class="fa fa-sliders"></i> Filter Data

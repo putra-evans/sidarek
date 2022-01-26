@@ -50,8 +50,8 @@ class Model_lapanganusaha extends CI_Model
 
 		$result = array(
 			"draw" => $this->input->post('draw'),
-			"recordsTotal" => $this->db->count_all_results('ref_perusahaan'),
-			"recordsFiltered" => $this->db->count_all_results('ref_perusahaan'),
+			"recordsTotal" => $this->db->count_all_results('ma_lapangan_usaha'),
+			"recordsFiltered" => $this->db->count_all_results('ma_lapangan_usaha'),
 			"data" => $data
 		);
 

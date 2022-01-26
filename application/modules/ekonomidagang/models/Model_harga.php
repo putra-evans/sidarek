@@ -110,8 +110,8 @@ class Model_harga extends CI_Model
 							harga.monday_date
 		');
 		$this->db->from('ma_komoditas_jenis jenis');
-		$this->db->join('ref_komoditas 			komoditas', 'komoditas.id_komoditas = jenis.id_komoditas', 'left');
-		$this->db->join('ma_komoditas_kategori 	kategori', 'kategori.id_komoditas_kategori = jenis.id_komoditas_kategori', 'left');
+		$this->db->join('ref_komoditas komoditas', 'komoditas.id_komoditas = jenis.id_komoditas', 'left');
+		$this->db->join('ma_komoditas_kategori kategori', 'kategori.id_komoditas_kategori = jenis.id_komoditas_kategori', 'left');
 		$this->db->join(
 			'ta_komoditas_harga 	harga',
 			'harga.id_komoditas_jenis = jenis.id_komoditas_jenis 
@@ -120,6 +120,9 @@ class Model_harga extends CI_Model
 			'left'
 		);
 		$this->db->order_by('jenis.id_komoditas, jenis.id_komoditas_kategori, jenis.id_komoditas_jenis', 'ASC');
+
+		// $this->db->query("SELECT jenis.id_komoditas_jenis, jenis.id_komoditas, jenis.id_komoditas_kategori, komoditas.nama as 'nama_komoditas', kategori.nama as 'kategori_komoditas', jenis.satuan, jenis.nama as 'jenis_komoditas', harga.id_komoditas_harga, IFNULL(harga.harga, 0) as 'harga', harga.minggu_tahun, harga.monday_date FROM ma_komoditas_jenis jenis LEFT JOIN ref_komoditas komoditas ON komoditas.id_komoditas = jenis.id_komoditas LEFT JOIN ma_komoditas_kategori kategori ON kategori.id_komoditas_kategori = jenis.id_komoditas_kategori LEFT JOIN ta_komoditas_harga harga ON harga.id_komoditas_jenis = jenis.id_komoditas_jenis AND harga.minggu_tahun = 3 AND YEAR(harga.monday_date) WHERE (komoditas.nama LIKE '%%' ESCAPE '!' OR jenis.nama LIKE '%%' ESCAPE '!' OR kategori.nama LIKE '%%' ESCAPE '!' ) ORDER BY jenis.id_komoditas ASC, jenis.id_komoditas_kategori ASC, jenis.id_komoditas_jenis ASC
+		// ");
 
 		$column_search = array('komoditas.nama', 'jenis.nama', 'kategori.nama');
 

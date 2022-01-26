@@ -33,10 +33,10 @@ class Pangan extends REST_Controller
         $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
 
-    public function data_get($month = null, $year = NULL)
+    public function data_get($year = NULL)
     {
-        if ($month && $year) {
-            $data = $this->mpangan->getDataBahanPangan($month, $year);
+        if ($year) {
+            $data = $this->mpangan->getDataBahanPangan($year);
 
             $this->response($data, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         } else {

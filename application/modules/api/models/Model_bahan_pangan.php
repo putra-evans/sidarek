@@ -13,22 +13,34 @@ class Model_bahan_pangan extends CI_Model
         parent::__construct();
     }
 
-    public function getDataBahanPangan($month, $year)
+    public function getDataBahanPangan($year)
     {
-        $yearMonth = $year . '-' . $month;
-        $date = DateTime::createFromFormat('Y-n', $yearMonth);
+        // $yearMonth = $year;
+        $date = DateTime::createFromFormat('Y', $year);
+        // var_dump($date);
+        // die;
 
-        $first =  clone $date->modify('first day of this month');
-        $week = clone $first->modify('sunday this week');
-        $end = clone $date->modify('last day of this month');
+
+        $first  =  clone $date->modify('first day of January');
+        // $week   = clone $first->modify('sunday this week');
+        $end    = clone $date->modify('last day of December');
         $one_week = DateInterval::createFromDateString('1 week');
 
+        // $ab = date_modify($date, '+1 day');
+
+        // $dateTime = new \DateTime('2020-04-01');
+        // $monday = clone $dateTime->modify(('Sunday' == $dateTime->format('l')) ? 'Monday last week' : 'Monday this week');
+        // $sunday = clone $dateTime->modify('Sunday this week');
+
+        // var_dump($first, $end);
+        // die;
+
         $arrData = [];
-        $week = $week->add($one_week);
-        while ($week < $end) {
+        $week = $first->add($one_week);
+        while ($first < $end) {
             $yearT = $week->format('Y');
             $weekT = $week->format('W');
-            $week = $week->add($one_week);
+            $week = $first->add($one_week);
             $arrData[] = [
                 'year' => $yearT,
                 'minggu_tahun' => $weekT,
