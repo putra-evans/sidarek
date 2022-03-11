@@ -15,7 +15,7 @@
           <div class="col-xs-12 col-sm-12">
             <div class="form-group required">
               <label for="tahun_inflasi" class="control-label"><b>Tahun <font color="red">*</font></b></label>
-              <?php echo form_dropdown('tahun_inflasi', array('' => 'Pilih Tahun', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun_inflasi'), 'class="select-all" id="tahun"'); ?>
+              <?php echo form_dropdown('tahun_inflasi', array('' => 'Pilih Tahun', 2023 => '2023', 2022 => '2022', 2021 => '2021', 2020 => '2020', 2019 => '2019', 2018 => '2018'), $this->input->post('tahun_inflasi'), 'class="select-all" id="tahun"'); ?>
               <div class="help-block"></div>
             </div>
           </div>
@@ -110,30 +110,30 @@
         <div id="errEntry"></div>
         <div class="row">
 
-            <div class="form-group">
-              <label for="excel_file" class="col-md-4 control-label"></label>
-              <div class="col-md-6">
-                <label for="excel_file" class="control-label">Format file import bisa didownload <a href="<?php echo base_url('assets/files/export_templates/template_inflasi.xlsx') ?>">disini</a></label>
+          <div class="form-group">
+            <label for="excel_file" class="col-md-4 control-label"></label>
+            <div class="col-md-6">
+              <label for="excel_file" class="control-label">Format file import bisa didownload <a href="<?php echo base_url('assets/files/export_templates/template_inflasi.xlsx') ?>">disini</a></label>
+            </div>
+          </div>
+          <div class="form-group">
+
+            <label for="excel_file" class="col-md-4 control-label">CSV file to import</label>
+
+            <div class="col-md-6">
+              <input id="excel_file" type="file" class="form-control" name="excel_file" required="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="header" checked=""> Apakah file mempunyai header?
+                </label>
               </div>
             </div>
-            <div class="form-group">
-
-              <label for="excel_file" class="col-md-4 control-label">CSV file to import</label>
-
-              <div class="col-md-6">
-                <input id="excel_file" type="file" class="form-control" name="excel_file" required="">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="header" checked=""> Apakah file mempunyai header?
-                  </label>
-                </div>
-              </div>
-            </div>
+          </div>
 
         </div>
       </div>

@@ -255,8 +255,6 @@ class Model_harga extends CI_Model
 			$this->db->insert('ta_komoditas_harga', $data);
 		}
 
-
-
 		return array('message' => 'SUCCESS');
 	}
 }
